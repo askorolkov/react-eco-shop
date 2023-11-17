@@ -1,0 +1,11 @@
+.shop__pages {
+  margin: 30px auto;
+}
+
+.shop__arrow:focus {
+  outline: 0;
+}
+
+.shop__page:focus {
+  outline: 0;
+}

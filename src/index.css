@@ -1,0 +1,13 @@
+@import url('./normalize.css');
+
+#root {
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}

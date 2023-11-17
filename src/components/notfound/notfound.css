@@ -1,0 +1,27 @@
+.notfound {
+  display: flex;
+  flex-direction: column;
+  margin: 70px auto 100px;
+}
+
+.notfound__title {
+  font-size: 300px;
+  font-weight: 700;
+  color: #DDE1E4;
+  margin: 0;
+}
+
+.notfound__oops {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.notfound__back {
+  background-color: #76A713;
+  border: 0;
+  color: #ffffff;
+  width: 160px;
+  margin: 0 auto;
+  padding: 5px;
+}
+

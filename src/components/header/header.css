@@ -1,0 +1,129 @@
+.header {
+  max-width: 1280px;
+  margin: 10px auto;
+}
+
+.header__upper {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid grey;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.header__contacts {
+  display: flex;
+  flex-direction: row;
+}
+
+.header__contact {
+  margin: 0;
+  margin-left: 3px;
+}
+
+.header__contact:not(:last-of-type) {
+  margin-right: 10px;
+}
+
+.header__socials {
+  display: flex;
+  flex-direction: row;
+}
+
+.header__pic {
+  padding-left: 5px;
+  margin-right: 5px;
+}
+
+.header__pic:last-of-type {
+  border-left: 1px solid grey;
+}
+
+.header__lang {
+  font-weight: 800;
+  margin : 0;
+}
+
+.header__lower {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header__main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header__main:visited {
+  color: black;
+}
+
+.header__title {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.header__navi {
+ 
+}
+
+.header__links {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  align-items: center;
+}
+
+.header__link {
+  color: black;
+  margin-left: 10px;
+}
+
+.header__cart {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  background-image: url('../../images/header_cart_icon.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.header__cart > .header__link {
+  display: block;
+  width: inherit;
+  height: inherit;
+  margin: 0;
+}
+
+.header__profile > .header__link {
+  display: block;
+  width: inherit;
+  height: inherit;
+  margin: 0;
+}
+
+.header__profile {
+  margin-left: 35px;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  background-image: url('../../images/header_profile_icon.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.header__button {
+  background-color: #76A713;
+  border-radius: 0;
+  margin-left: 5px;
+  padding: 15px;
+}
