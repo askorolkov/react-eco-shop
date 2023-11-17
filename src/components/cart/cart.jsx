@@ -10,6 +10,9 @@ function Cart(props) {
   console.log(props.items)
   const totalPrice = props.items.reduce((acc, val) => acc + (val.price * val.quantity), 0);
   // const totalAmount = props.items.reduce((acc, val)=> acc + val.quantity, 0);
+
+  //костыльный стейт чтобы элемент перерисовывался при изменении количества товара
+  //т.к блок total не обновлял общее количество товаров при изменении колва одного товара
   const [totalAmount, setTotalAmount] = React.useState(props.items.reduce((acc, val)=> acc + val.quantity, 0))
 
   function handleAmount(amount) {

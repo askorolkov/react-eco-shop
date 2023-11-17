@@ -13,7 +13,6 @@ function CartItem(props) {
     setAmount((amount) => amount - 1)    
     props.addQuantity(props.name, amount - 1)
     props.handleAmount(props.totalAmount - 1)
-
   }
 
   return(
