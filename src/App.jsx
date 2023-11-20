@@ -15,6 +15,10 @@ import './App.css'
 import { goodsPerPage, goodsSortBy, goods } from './utils/constants';
 function App() {
   const [myCart, setMyCart] = React.useState([]);
+  const [shopView, setShopView] = React.useState('grid')
+  const [goodsAmount, setGoodsAmount] = React.useState(goodsPerPage)
+
+
   //добавляет элемент в корзину при нажатии кнопки корзины на товаре на странице shop
   function handleAddItem(item) {    
     const el = myCart.map(elem => elem.name).indexOf(item.name)
@@ -47,10 +51,13 @@ function App() {
         <Route 
           path="shop" 
           element={<Shop 
-          amount={goodsPerPage}
+          amount={goodsAmount}
+          setAmount={setGoodsAmount}
           sortBy={goodsSortBy}
           goods={goods}
           addItem={handleAddItem}
+          view={shopView}
+          setView={setShopView}
           />} 
         />
         <Route 

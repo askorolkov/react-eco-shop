@@ -1,18 +1,5 @@
 import './cartItem.css';
 function CartItem(props) {
-  
-  function handleIncreaseAmount() {     
-    props.addQuantity(props.name, props.amount + 1)    
-  }
-
-  function handleReduceAmount() { 
-    console.log(props.amount)
-    if (props.amount - 1 === 0)  {
-      props.setShowPopup(true)
-    } else {
-      props.addQuantity(props.name, props.amount - 1)  
-    }
-  }
 
   return(
     <div className="cartitem">
@@ -23,9 +10,9 @@ function CartItem(props) {
       </div>
       <p className="cartitem__price">{props.price}$</p>
       <div className="cartitem__quantity">
-        <button className="cartitem__button" onClick={handleReduceAmount}>-</button>
+        <button className="cartitem__button" onClick={()=> props.handleReduceAmount(props.name, props.amount)}>-</button>
         <p className="cartitem__quantity-amount">{props.amount}</p>
-        <button className="cartitem__button" onClick={handleIncreaseAmount}>+</button>
+        <button className="cartitem__button" onClick={()=> props.handleIncreaseAmount(props.name, props.amount)}>+</button>
       </div>
       <p className="cartitem__total">{props.amount * props.price}$</p>
     </div>

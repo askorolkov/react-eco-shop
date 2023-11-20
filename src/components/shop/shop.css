@@ -1,7 +1,6 @@
 .shop {
   max-width: 1280px;
   margin: 0 auto 150px;
-
   padding-top: 50px;
   padding-bottom: 150px;
 }
@@ -66,7 +65,7 @@
 
 #list {
   background: url(../../images/list_view.svg);  
-  background-size: contain;
+  background-size: 150%;
   background-repeat: no-repeat;
   background-position: center;
 }

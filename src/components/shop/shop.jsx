@@ -8,16 +8,16 @@ import GoodsSort from '../sort/goodssort';
 
 function Shop(props) { 
   const [itemsToRender, setItemsToRender] = React.useState(props.goods.slice(0, props.amount));
-  const [itemsAmount, setItemsAmount] = React.useState(props.amount)
+  // const [itemsAmount, setItemsAmount] = React.useState(props.amount)
   const [showPagesButtons, setShowPagesButtons] = React.useState(false);
   const [pageNumber, setPageNumber] = React.useState(1)
-  const [view, setView] = React.useState('grid')
+  // const [view, setView] = React.useState('grid')
 
   function handleItemsAmount(val) {
     console.log(val)
     setItemsToRender(props.goods.slice(0, val))
     setPageNumber(1)
-    setItemsAmount(Number(val))
+    props.setAmount(Number(val))
   }
 
   const handleItemsSort = (val) => {
@@ -32,11 +32,11 @@ function Shop(props) {
           return -1;
         }        
         return 0;
-        }).slice(0,itemsAmount))  
+        }).slice(0,props.amount))  
       }
 
     if(val === 'По цене') {
-      setItemsToRender(props.goods.sort((a,b)=> a.price - b.price).slice(0,itemsAmount))
+      setItemsToRender(props.goods.sort((a,b)=> a.price - b.price).slice(0,props.amount))
     }
     setPageNumber(1)
   }
@@ -44,30 +44,30 @@ function Shop(props) {
   function leftPage() {
     if(pageNumber > 1) {
       const page = pageNumber - 1
-      const itemsStart = itemsAmount * (page-1)      
-      const itemsEnd = itemsStart + itemsAmount
+      const itemsStart = props.amount * (page-1)      
+      const itemsEnd = itemsStart + props.amount
       setItemsToRender(props.goods.slice(itemsStart, itemsEnd))      
       setPageNumber(page)
     }    
   }
 
   function rightPage() {
-    const maxPagesAmount = props.goods.length / itemsAmount
+    const maxPagesAmount = props.goods.length / props.amount
     if(pageNumber < maxPagesAmount) {
       const page = pageNumber + 1
-      const itemsStart = itemsAmount * (page-1)
-      const itemsEnd = itemsStart + itemsAmount
+      const itemsStart = props.amount * (page-1)
+      const itemsEnd = itemsStart + props.amount
       setItemsToRender(props.goods.slice(itemsStart, itemsEnd))
       setPageNumber(page)
     }    
   } 
 
   function handleGridView() {
-    setView('grid')
+    props.setView('grid')
   }
 
   function handleListView() {
-    setView('list')
+    props.setView('list')
   }
 
   React.useEffect(()=> {
@@ -101,12 +101,12 @@ function Shop(props) {
           </div>
         </div>
       </div>
-      { view === 'grid' ? 
+      { props.view === 'grid' ? 
         <section className="shop__grid">
         {itemsToRender.map((good, i) => (
           <ShopItem 
             key={i}             
-            view={view}           
+            view={props.view}           
             good={good}
             addItem={props.addItem}
              />
@@ -116,7 +116,7 @@ function Shop(props) {
         {itemsToRender.map((good, i) => (
             <ShopItem 
               key={i}               
-              view={view}              
+              view={props.view}              
               good={good}
               addItem={props.addItem}
               />
