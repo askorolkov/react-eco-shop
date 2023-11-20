@@ -1,22 +1,29 @@
 import './cart.css';
-import CartItem from './cartItem';
 import React from 'react';
+import CartItem from './cartItem';
+
 function Cart(props) {
-  function handleClear() {
-    document.querySelector('.cart__items').replaceChildren();
-  }
-    
 
+  const [showPopup, setShowPopup] = React.useState(false);
+
+  const totalPrice = props.items.length > 0 ? props.items.reduce((acc, val) => acc + (val.price * val.quantity), 0) : 0;
+  const totalAmount = props.items.length > 0 ? props.items.reduce((acc, val)=> acc + val.quantity, 0) : 0;
   console.log(props.items)
-  const totalPrice = props.items.reduce((acc, val) => acc + (val.price * val.quantity), 0);
-  // const totalAmount = props.items.reduce((acc, val)=> acc + val.quantity, 0);
 
-  //костыльный стейт чтобы элемент перерисовывался при изменении количества товара
-  //т.к блок total не обновлял общее количество товаров при изменении колва одного товара
-  const [totalAmount, setTotalAmount] = React.useState(props.items.reduce((acc, val)=> acc + val.quantity, 0))
+  function handleClear() {
+    props.setCart([])
+  } 
 
-  function handleAmount(amount) {
-    setTotalAmount(amount)
+  // function handlePopup() {
+    
+  // }
+
+  // function handleDelete() {
+
+  // }
+
+  function handleCancel() {
+    setShowPopup(false)
   }
 
   return(
@@ -36,9 +43,8 @@ function Cart(props) {
               price={item.price}
               image={item.src}
               amount={item.quantity}
-              addQuantity={props.addQuantity}
-              totalAmount={totalAmount}
-              handleAmount={handleAmount}
+              addQuantity={props.addQuantity} 
+              setShowPopup={setShowPopup}          
             />
           ))
           }
@@ -60,9 +66,16 @@ function Cart(props) {
           <button className="cart__sidebar-checkout">Checkout</button>
         </div>
       </div>
-    </div>
-      
-
+      <div className={`cart__popup ${showPopup && 'cart__popup_visible'}`}>
+        <div className="cart__popup-container">
+          <h2 className="cart__popup-title">Товар будет удален из корзины. <br />Продолжить?</h2>
+          <div className="cart__popup-buttons">
+            <button className="cart__popup-button">Да</button>  
+            <button className="cart__popup-button" onClick={handleCancel}>Отмена</button>
+          </div>
+        </div>
+      </div>
+    </div>  
   )
 }
 

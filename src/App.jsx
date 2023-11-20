@@ -15,7 +15,6 @@ import './App.css'
 import { goodsPerPage, goodsSortBy, goods } from './utils/constants';
 function App() {
   const [myCart, setMyCart] = React.useState([]);
-
   //добавляет элемент в корзину при нажатии кнопки корзины на товаре на странице shop
   function handleAddItem(item) {    
     const el = myCart.map(elem => elem.name).indexOf(item.name)
@@ -29,9 +28,12 @@ function App() {
 
   //изменяет количество товара в корзине при нажатии + или - на товаре на странице cart
   //ищет товар в корзине по имени и задает количество равное amount
-  function handleChangeQuantity(itemName, amount) {
-    myCart.forEach((item) => item.name === itemName ? item.quantity = amount : item.quantity)
-    console.log(myCart)
+  function handleChangeQuantity(itemName, amount) {  
+    if(amount === 0) {
+      setMyCart(myCart.filter((item) => item.name!==itemName))      
+    } else {
+      setMyCart(myCart.map((item) => (item.name === itemName ? {...item, quantity:amount} : item)))       
+    }             
   }
 
   return (
@@ -56,6 +58,7 @@ function App() {
           element={<Cart 
           items={myCart}
           addQuantity={handleChangeQuantity}
+          setCart={setMyCart}
           />}
         />
         <Route  
