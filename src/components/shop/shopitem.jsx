@@ -1,8 +1,16 @@
 import './shopitem.css';
 
 function ShopItem(props) {
-  function handleAdd() {    
+
+  function handleAdd() {   
+    console.log('add') 
+    console.log(props.good) 
     props.addItem({...props.good, quantity: 1 })    
+  }
+
+  function handleLike() {
+    console.log(props.good)
+    props.addLike(props.good)
   }
 
   return (
@@ -15,6 +23,7 @@ function ShopItem(props) {
             onClick={handleAdd} 
             className="shopitem__grid-button shopitem__list-add"></button>
           <button 
+            onClick={handleLike}
             className="shopitem__grid-button shopitem__list-like"></button>
         </div>
       </div>
@@ -32,6 +41,7 @@ function ShopItem(props) {
             onClick={handleAdd}
             className="shopitem__list-button shopitem__list-add"></button>
           <button 
+            onClick={handleLike}
             className="shopitem__list-button shopitem__list-like"></button>
         </div>
       </div>      

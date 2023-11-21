@@ -12,19 +12,27 @@ function Shop(props) {
   const [showPagesButtons, setShowPagesButtons] = React.useState(false);
   const [pageNumber, setPageNumber] = React.useState(1)
   // const [view, setView] = React.useState('grid')
+  console.log(props.view)
 
   function handleItemsAmount(val) {
     console.log(val)
     setItemsToRender(props.goods.slice(0, val))
     setPageNumber(1)
-    props.setAmount(Number(val))
+    props.setView({
+      ...props.view,
+      perPage: Number(val),
+    })
   }
 
-  const handleItemsSort = (val) => {
+  function handleItemsSort(val) {
     console.log(val)
+    props.setView({
+      ...props.view,
+      sortBy: val,
+    })
     
     if(val === 'По алфавиту') {
-      setItemsToRender(props.goods.sort((a,b)=> {
+      setItemsToRender(props.goods.slice(0).sort((a,b)=> {
         if (a.name > b.name) {
           return 1;
         }
@@ -36,38 +44,48 @@ function Shop(props) {
       }
 
     if(val === 'По цене') {
-      setItemsToRender(props.goods.sort((a,b)=> a.price - b.price).slice(0,props.amount))
+      setItemsToRender(props.goods.slice(0).sort((a,b)=> a.price - b.price).slice(0, props.amount))
     }
     setPageNumber(1)
+
+    if(val === 'По актуальности') {
+      setItemsToRender(props.goods.slice(0, props.amount))
+    }
   }
 
   function leftPage() {
     if(pageNumber > 1) {
       const page = pageNumber - 1
-      const itemsStart = props.amount * (page-1)      
-      const itemsEnd = itemsStart + props.amount
+      const itemsStart = props.view.perPage * (page-1)      
+      const itemsEnd = itemsStart + props.view.perPage
       setItemsToRender(props.goods.slice(itemsStart, itemsEnd))      
       setPageNumber(page)
     }    
   }
 
   function rightPage() {
-    const maxPagesAmount = props.goods.length / props.amount
+    const maxPagesAmount = props.goods.length / props.view.perPage
     if(pageNumber < maxPagesAmount) {
       const page = pageNumber + 1
-      const itemsStart = props.amount * (page-1)
-      const itemsEnd = itemsStart + props.amount
+      const itemsStart = props.view.perPage * (page-1)
+      const itemsEnd = itemsStart + props.view.perPage
       setItemsToRender(props.goods.slice(itemsStart, itemsEnd))
       setPageNumber(page)
     }    
   } 
 
   function handleGridView() {
-    props.setView('grid')
+    props.setView({
+      ...props.view,
+      viewType: 'grid'
+    })
   }
 
   function handleListView() {
-    props.setView('list')
+    props.setView({
+      ...props.view,
+      viewType: 'list'
+    })
   }
 
   React.useEffect(()=> {
@@ -82,14 +100,14 @@ function Shop(props) {
           <label className="shop__label">
             Per Page:
             <GoodsAmount 
-              amount={props.amount}
+              amount={props.view.perPage}
               onChange={handleItemsAmount}
               />       
           </label>
           <label className="shop__label">
             Sort By:
             <GoodsSort 
-              sortBy={props.sortBy}
+              sortBy={props.view.sortBy}
               onChange={handleItemsSort}
             />
           </label>
@@ -101,14 +119,15 @@ function Shop(props) {
           </div>
         </div>
       </div>
-      { props.view === 'grid' ? 
+      { props.view.viewType === 'grid' ? 
         <section className="shop__grid">
         {itemsToRender.map((good, i) => (
           <ShopItem 
             key={i}             
-            view={props.view}           
+            view={props.view.viewType}           
             good={good}
             addItem={props.addItem}
+            addLike={props.addLike}
              />
         ))}
         </section> :
@@ -116,9 +135,10 @@ function Shop(props) {
         {itemsToRender.map((good, i) => (
             <ShopItem 
               key={i}               
-              view={props.view}              
+              view={props.view.viewType}              
               good={good}
               addItem={props.addItem}
+              addLike={props.addLike}
               />
           ))}
         </section>      

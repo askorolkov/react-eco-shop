@@ -15,14 +15,20 @@ import './App.css'
 import { goodsPerPage, goodsSortBy, goods } from './utils/constants';
 function App() {
   const [myCart, setMyCart] = React.useState([]);
-  const [shopView, setShopView] = React.useState('grid')
-  const [goodsAmount, setGoodsAmount] = React.useState(goodsPerPage)
+  const [likedItems, setLikedItems] = React.useState([]);
+  const [shopView, setShopView] = React.useState({
+    viewType:'grid', 
+    sortBy: goodsSortBy,
+    perPage: goodsPerPage
+  });
 
-
+  // const [goodsAmount, setGoodsAmount] = React.useState(goodsPerPage);
+  
   //добавляет элемент в корзину при нажатии кнопки корзины на товаре на странице shop
   function handleAddItem(item) {    
     const el = myCart.map(elem => elem.name).indexOf(item.name)
     console.log(el)
+    console.log(item)
     if (el==-1) {
       setMyCart([...myCart, item])
     } else {
@@ -40,6 +46,16 @@ function App() {
     }             
   }
 
+  function handleItemLike(item) {
+    const el = likedItems.map(elem => elem.name).indexOf(item.name)
+    console.log(el)
+    if (el===-1) {
+      setLikedItems([...likedItems, item])
+    } else {
+      setLikedItems(likedItems.filter(el=> el.name !== item.name))      
+    }    
+  }
+
   return (
     <>
       <Header />
@@ -51,13 +67,14 @@ function App() {
         <Route 
           path="shop" 
           element={<Shop 
-          amount={goodsAmount}
-          setAmount={setGoodsAmount}
-          sortBy={goodsSortBy}
+          // amount={goodsAmount}
+          // setAmount={setGoodsAmount}
+          // sortBy={goodsSortBy}
           goods={goods}
           addItem={handleAddItem}
           view={shopView}
           setView={setShopView}
+          addLike={handleItemLike}
           />} 
         />
         <Route 
@@ -70,7 +87,9 @@ function App() {
         />
         <Route  
           path="profile"
-          element={<Profile />}
+          element={<Profile 
+          likedItems={likedItems}
+          />}
         />
         <Route  
           path="about"
