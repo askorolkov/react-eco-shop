@@ -1,3 +1,41 @@
 .profile {
+  max-width: 600px;
   margin: 50px auto 150px;
+  display: flex;
+  flex-direction: column;
 }
+
+/* .profile__data {
+  
+} */
+
+.profile__info {
+  align-self: flex-start;
+  font-weight: 700;
+}
+
+.profile__likes {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__likes-title {
+  font-size: 24px;
+  margin-top: 50px;
+}
+
+.profile__liked-item {
+  display: grid;
+  grid-template-columns: 64px auto 64px;
+}
+
+.profile__liked-pic {
+  width: 64px;
+  height: 64px;
+  margin-right: 20px;
+}
+
+.profile__liked-name {
+  margin-right: 30px;
+}
+
