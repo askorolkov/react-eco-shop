@@ -1,4 +1,5 @@
 import './home.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import herb from '../../images/herb.svg';
 import best from '../../images/best.svg';
@@ -7,8 +8,21 @@ import handmade from '../../images/handmade.svg';
 import fruits from '../../images/fruits.svg';
 import honey from '../../images/honey.svg';
 import sandwich from '../../images/sandwich.svg';
+import ShopItem from '../shop/ShopItem';
 
-function Home() {
+function Home(props) {
+
+  const [ itemFilter, setItemFilter ] = React.useState(null);
+
+  function handleFilter(e) {
+    setItemFilter(e.currentTarget.children[0].id)
+    e.currentTarget.classList.add('home__filter_active')
+    e.currentTarget.children[0].checked = true
+    console.log(e.currentTarget.children[0].id)
+  }
+
+  console.log(itemFilter)
+
   return (
     <div className="home">
       <div className="home__main">
@@ -22,32 +36,59 @@ function Home() {
           <Link to="/about" className="home__about">About Shop &rarr;</Link>         
         </div>      
       </div>   
-      <div className="home__filters">
-        <button className="home__filter">     
+      <fieldset className="home__filters">
+        <label className="home__filter"  onClick={handleFilter}>
+          <input type="radio" id="drinks" name="filters" className='home__radio'/>     
           <img src={best} alt="" className='home__filter-img'/>     
           Drinks
-        </button>
-        <button className="home__filter">     
+        </label>
+        <label className="home__filter"  onClick={handleFilter}>
+          <input type="radio" id='herbal' name="filters" className='home__radio'/>     
           <img src={herbal} alt="" className='home__filter-img'/>     
           Herbal tea
-        </button>
-        <button className="home__filter">     
+        </label>
+        <label className="home__filter"  onClick={handleFilter}>
+          <input type="radio" id="sauce" name="filters"  className='home__radio'/>     
           <img src={handmade} alt="" className='home__filter-img'/>     
           Sauce
-        </button>
-        <button className="home__filter">     
+        </label>
+        <label className="home__filter"  onClick={handleFilter}>
+          <input type="radio" id="fruits" name="filters"  className='home__radio'/>     
           <img src={fruits} alt="" className='home__filter-img'/>     
           Fruits & vegies
-        </button>
-        <button className="home__filter">     
+        </label>
+        <label className="home__filter"  onClick={handleFilter}>
+          <input type="radio" id="honey" name="filters"  className='home__radio'/>     
           <img src={honey} alt="" className='home__filter-img'/>     
           Honey jars
-        </button>
-        <button className="home__filter">     
+        </label>
+        <label className="home__filter"  onClick={handleFilter}>
+          <input type="radio" id="fastfood" name="filters" className='home__radio'/>     
           <img src={sandwich} alt="" className='home__filter-img'/>     
           Fast foods
-        </button>        
-      </div>   
+        </label>        
+      </fieldset> 
+      <section className="home__grid">
+        {
+        itemFilter ? 
+        props.goods.filter(good => good.type === itemFilter).map((good, i)=> (
+          <ShopItem 
+            key={i}             
+            view='grid'       
+            good={good}
+            addItem={props.addItem}
+            addLike={props.addLike}/>
+        )) :
+        props.goods.map((good, i)=> (
+          <ShopItem 
+            key={i}             
+            view='grid'       
+            good={good}
+            addItem={props.addItem}
+            addLike={props.addLike}/>
+        ))        
+        }
+      </section>  
     </div>
   )
 }

@@ -62,7 +62,11 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home />} 
+          element={<Home 
+          goods={goods}
+          addLike={handleItemLike}
+          addItem={handleAddItem}
+          />} 
         />
         <Route 
           path="shop" 

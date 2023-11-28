@@ -56,6 +56,7 @@
 }
 
 .home__filters {
+  border: none;
   width: 1120px;
   display: flex;
   flex-direction: row;
@@ -75,9 +76,31 @@
   font-size: 16px;
   font-weight: 700;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .home__filter-img {
   width: 50px;
   height: 50px;
+}
+
+.home__filter:hover {
+  transform: scale(105%);
+}
+
+.home__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 270px);
+  grid-template-rows: auto;
+  gap: 30px;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.home__filter:has(input:checked) {
+  color:#8fcc16;
+}
+
+.home__radio {
+  visibility: hidden;
 }
