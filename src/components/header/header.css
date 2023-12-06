@@ -34,6 +34,8 @@
 .header__pic {
   padding-left: 5px;
   margin-right: 5px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .header__pic:last-of-type {
@@ -43,6 +45,7 @@
 .header__lang {
   font-weight: 800;
   margin : 0;
+  align-self: center;
 }
 
 .header__lower {
@@ -111,7 +114,7 @@
 }
 
 .header__profile {
-  margin-left: 35px;
+  margin-left: 70px;
   margin-right: 5px;
   width: 20px;
   height: 20px;
@@ -123,6 +126,7 @@
 
 .header__button {
   background-color: #76A713;
+  color: white;
   border-radius: 0;
   margin-left: 5px;
   padding: 15px;

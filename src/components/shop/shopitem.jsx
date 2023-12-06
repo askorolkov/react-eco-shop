@@ -2,14 +2,11 @@ import './shopitem.css';
 
 function ShopItem(props) {
 
-  function handleAdd() {   
-    console.log('add') 
-    console.log(props.good) 
+  function handleAdd() {  
     props.addItem({...props.good, quantity: 1 })    
   }
 
   function handleLike() {
-    console.log(props.good)
     props.addLike(props.good)
   }
 
@@ -21,14 +18,14 @@ function ShopItem(props) {
         <div className="shopitem__grid-buttons">
           <button
             onClick={handleAdd} 
-            className="shopitem__grid-button shopitem__list-add"></button>
+            className="shopitem__grid-button shopitem__add"></button>
           <button 
             onClick={handleLike}
-            className="shopitem__grid-button shopitem__list-like"></button>
+            className={`shopitem__list-button ${props.liked == -1? 'shopitem__like' : 'shopitem__like_active'}`}></button>
         </div>
       </div>
       <p className="shopitem__info shopitem__info-grid">{props.good.name}</p>
-      <p className="shopitem__info shopitem__info-grid">{props.good.price} $</p>
+      <p className="shopitem__info shopitem__info-grid">{props.good.price} &#8381;</p>
     </div> :
     <div className="shopitem__list">     
       <img src={props.good.src} alt="картинка товара" className="shopitem__list-pic" />      
@@ -39,10 +36,10 @@ function ShopItem(props) {
         <div className="shopitem__list-buttons">
           <button
             onClick={handleAdd}
-            className="shopitem__list-button shopitem__list-add"></button>
+            className={`shopitem__list-button ${'shopitem__add'}`}></button>
           <button 
             onClick={handleLike}
-            className="shopitem__list-button shopitem__list-like"></button>
+            className={`shopitem__list-button ${props.liked == -1? 'shopitem__like' : 'shopitem__like_active'}`}></button>
         </div>
       </div>      
     </div>    

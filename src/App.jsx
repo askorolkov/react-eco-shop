@@ -14,6 +14,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css'
 import { goodsPerPage, goodsSortBy, goods } from './utils/constants';
 function App() {
+
   const [myCart, setMyCart] = React.useState([]);
   const [likedItems, setLikedItems] = React.useState([]);
   const [shopView, setShopView] = React.useState({
@@ -66,19 +67,18 @@ function App() {
           goods={goods}
           addLike={handleItemLike}
           addItem={handleAddItem}
+          likedItems={likedItems}
           />} 
         />
         <Route 
           path="shop" 
           element={<Shop 
-          // amount={goodsAmount}
-          // setAmount={setGoodsAmount}
-          // sortBy={goodsSortBy}
           goods={goods}
           addItem={handleAddItem}
           view={shopView}
           setView={setShopView}
           addLike={handleItemLike}
+          likedItems={likedItems}
           />} 
         />
         <Route 

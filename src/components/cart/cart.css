@@ -3,6 +3,7 @@
   flex-direction: row;
   margin: 30px auto 150px;
   justify-content: center;
+  align-items: start;
 }
 
 .cart__main {
@@ -68,6 +69,11 @@
   border: 1px solid #76A713;
   height: 30px;
   align-self: flex-end;
+}
+
+.cart__empty { 
+  margin-top: 80px;
+  font-size: 30px;
 }
 
 .cart__sidebar {

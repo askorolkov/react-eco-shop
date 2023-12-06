@@ -20,31 +20,29 @@ function Footer() {
         <ul className='shop__info-list'>
           <li className="shop__info-item">
             <img src={shopicon1} alt="" className="shop__info-icon" />
-            <p className="shop__info-text">Curated Products</p>
-            <p className="shop__info-subtext">From handpicked sellers</p>
+            <p className="shop__info-text">Проверенные товары</p>
+            <p className="shop__info-subtext">От проверенных поставщиков</p>
           </li>
           <li className="shop__info-item">
             <img src={shopicon2} alt="" className="shop__info-icon" />
-            <p className="shop__info-text">Handmade</p>
-            <p className="shop__info-subtext">From handpicked sellers</p>
+            <p className="shop__info-text">Собраны в ручную</p>
+            <p className="shop__info-subtext">От проверенных поставщиков</p>
           </li>
           <li className="shop__info-item">
             <img src={shopicon3} alt="" className="shop__info-icon" />
-            <p className="shop__info-text">100% Natural</p>
-            <p className="shop__info-subtext">From handpicked sellers</p>
+            <p className="shop__info-text">100% Натуральные</p>
+            <p className="shop__info-subtext">От проверенных поставщиков</p>
           </li>
           <li className="shop__info-item">
             <img src={shopicon4} alt="" className="shop__info-icon" />
-            <p className="shop__info-text">Shipping</p>
-            <p className="shop__info-subtext">From handpicked sellers</p>
+            <p className="shop__info-text">С доставкой</p>
+            <p className="shop__info-subtext">От проверенных поставщиков</p>
           </li>
         </ul>
       </div>
       <div className="footer__about">
-        <h3 className="footer__title">About Us</h3>
-        <p className="footer__text">Corporate clients and leisure travelers has been relying on Groundlink for dependable safe,
-         and professional chauffeured car service in major cities across World. Indeed it has been more than one decade and five
-        years that Groundlink</p>
+        <h3 className="footer__title">О нас</h3>
+        <p className="footer__text">Интернет-магазин полезного питания</p>
         <div className="footer__about-socials">
           <img src={socials01} alt="" className='footer__about-icon'/>
           <img src={socials02} alt="" className='footer__about-icon'/>
@@ -53,30 +51,29 @@ function Footer() {
         </div>
       </div>
       <div className="footer__useful">
-        <h3 className="footer__title">Useful links</h3>
+        <h3 className="footer__title">Полезное</h3>
         <nav className="footer__navi">
           <ul className="footer__list">
             <li className="footer__link">
-              <Link to="about" className='link'>About</Link>
+              <Link to="about" className='link'>О нас</Link>
             </li>          
-            <li className="footer__link">News</li>          
-            <li className="footer__link">Partners</li>          
-            <li className="footer__link">Room Details</li>          
-            <li className="footer__link">Gallery</li>          
-            <li className="footer__link">Contacts</li>
+            <li className="footer__link">Новости</li>          
+            <li className="footer__link">Партнеры</li>          
+            {/* <li className="footer__link">Room Details</li>           */}
+            <li className="footer__link">Галерея</li>          
+            <li className="footer__link">Контакты</li>
           </ul>
         </nav>
       </div>
       <div className="footer__help">
-        <h3 className="footer__title">Help?</h3>
+        <h3 className="footer__title">Инфо</h3>
         <nav className="footer__navi">
           <ul className="footer__list">
-            <li className="footer__link">FAQ</li>          
-            <li className="footer__link">Terms & conditions</li>          
-            <li className="footer__link">Reporting</li>          
-            <li className="footer__link">Documentation</li>          
-            <li className="footer__link">Support Policy</li>         
-            <li className="footer__link">Privacy</li>
+            <li className="footer__link">FAQ</li>                  
+            <li className="footer__link">Отчеты</li>          
+            <li className="footer__link">Документация</li>          
+            <li className="footer__link">Правила</li>         
+            <li className="footer__link">Безопасность</li>
           </ul>
         </nav>
       </div>

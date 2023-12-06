@@ -28,44 +28,44 @@ function Home(props) {
       <div className="home__main">
         <p className="home__subtitle">
           <img src={herb} />
-          100% Genuine Products
+          100% Свежие продукты
           </p>
-        <h1 className="home__title">Tasty & Healthy Organic Food</h1>
+        <h1 className="home__title">Вкусная & Здоровая Еда</h1>
         <div className="home__buttons">        
-          <Link to='/shop' className="home__products">View Products &rarr;</Link>          
-          <Link to="/about" className="home__about">About Shop &rarr;</Link>         
+          <Link to='/shop' className="home__products">Список товаров &rarr;</Link>          
+          <Link to="/about" className="home__about">О магазине &rarr;</Link>         
         </div>      
       </div>   
       <fieldset className="home__filters">
         <label className="home__filter"  onClick={handleFilter}>
           <input type="radio" id="drinks" name="filters" className='home__radio'/>     
           <img src={best} alt="" className='home__filter-img'/>     
-          Drinks
+          Напитки
         </label>
         <label className="home__filter"  onClick={handleFilter}>
           <input type="radio" id='herbal' name="filters" className='home__radio'/>     
           <img src={herbal} alt="" className='home__filter-img'/>     
-          Herbal tea
+          Травяной чай
         </label>
         <label className="home__filter"  onClick={handleFilter}>
           <input type="radio" id="sauce" name="filters"  className='home__radio'/>     
           <img src={handmade} alt="" className='home__filter-img'/>     
-          Sauce
+          Соусы
         </label>
         <label className="home__filter"  onClick={handleFilter}>
           <input type="radio" id="fruits" name="filters"  className='home__radio'/>     
           <img src={fruits} alt="" className='home__filter-img'/>     
-          Fruits & vegies
+          Фрукты и овощи
         </label>
         <label className="home__filter"  onClick={handleFilter}>
           <input type="radio" id="honey" name="filters"  className='home__radio'/>     
           <img src={honey} alt="" className='home__filter-img'/>     
-          Honey jars
+          Мед
         </label>
         <label className="home__filter"  onClick={handleFilter}>
           <input type="radio" id="fastfood" name="filters" className='home__radio'/>     
           <img src={sandwich} alt="" className='home__filter-img'/>     
-          Fast foods
+          Перекус
         </label>        
       </fieldset> 
       <section className="home__grid">
@@ -77,7 +77,9 @@ function Home(props) {
             view='grid'       
             good={good}
             addItem={props.addItem}
-            addLike={props.addLike}/>
+            addLike={props.addLike}
+            liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
+            />
         )) :
         props.goods.map((good, i)=> (
           <ShopItem 
@@ -85,7 +87,9 @@ function Home(props) {
             view='grid'       
             good={good}
             addItem={props.addItem}
-            addLike={props.addLike}/>
+            addLike={props.addLike}
+            liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
+            />
         ))        
         }
       </section>  

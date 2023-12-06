@@ -64,6 +64,10 @@
   text-align: start;
 }
 
+.footer__about-icon {
+  cursor: pointer;
+}
+
 .footer__about-icon:not(:last-of-type) {
   margin-right: 10px;
 }
@@ -102,7 +106,7 @@
 .shop__info-list {
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  gap: 70px;
   justify-content: center;
   align-items: center;
 }
@@ -123,7 +127,7 @@
 .shop__info-text {
   grid-area: text;
   font-weight: 800;
-  margin: 0;
+  margin: 10px 0;
   margin-left: 10px;
   font-size: 18px;
 }

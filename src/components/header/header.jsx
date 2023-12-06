@@ -5,7 +5,8 @@ import mail from '../../images/mail.svg';
 import facebook from '../../images/facebook.svg';
 import twitter from '../../images/twitter.svg';
 import instagram from '../../images/instagram.svg';
-import brit from '../../images/brit.svg';
+// import brit from '../../images/brit.svg';
+import flagru from '../../images/flagru.png';
 import cart from '../../images/cart.svg';
 
 
@@ -23,8 +24,8 @@ function Header() {
           <img src={facebook} className="header__pic"/>
           <img src={twitter} className="header__pic"/>
           <img src={instagram} className="header__pic"/>
-          <img src={brit} className="header__pic" />
-          <p className="header__lang">EN</p>
+          <img src={flagru} className="header__pic" />
+          <p className="header__lang">RU</p>
         </div>
       </div>
       <div className="header__lower">
@@ -35,19 +36,19 @@ function Header() {
         <nav className="header__navi">
           <ul className="header__links">
             <li>
-              <Link to='' className='header__link'>Home</Link>
+              <Link to='' className='header__link'>На главную</Link>
             </li>
             <li>
-              <Link to='/shop' className='header__link'>Shop</Link>
+              <Link to='/shop' className='header__link'>Магазин</Link>
             </li>
             <li>
-              <Link to='' className='header__link'>Pages</Link>
+              <Link to='' className='header__link'>Истории</Link>
             </li>
             <li>
-              <Link to='' className='header__link'>Blog</Link>
+              <Link to='' className='header__link'>Блог</Link>
             </li>
             <li>
-              <Link to='' className='header__link'>Contact</Link>
+              <Link to='' className='header__link'>Контакты</Link>
             </li>
             <li className='header__profile'>
               <Link to='/profile' className='header__link'></Link>
@@ -55,9 +56,9 @@ function Header() {
             <li className='header__cart'>
               <Link to='/cart' className='header__link'></Link>
             </li>
-            <li>
-              <button className="header__button">GET A QUATE</button>
-            </li>
+            {/* <li>
+              <button className="header__button">Получить предложение</button>
+            </li> */}
           </ul>
 
         </nav>

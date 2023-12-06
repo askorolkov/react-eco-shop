@@ -9,3 +9,24 @@
 .shop__page:focus {
   outline: 0;
 }
+
+.shop__arrow, 
+.shop__page {
+  height: 35px;
+  width: 35px;
+  margin: 0 5px;
+  /* background-color: #81c004; */
+}
+
+.shop__page_active {
+  background-color: #81c004;
+  color: white;
+}
+
+.shop__arrow:hover {
+  color: #81c004;
+}
+
+.shop__page:hover {
+  color: #81c004;
+}
