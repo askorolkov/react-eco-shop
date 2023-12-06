@@ -9,26 +9,33 @@ function Shop(props) {
   const [itemsToRender, setItemsToRender] = React.useState(props.goods.slice(0, props.view.perPage));
   const [showPagesButtons, setShowPagesButtons] = React.useState(false);
   const [pageNumber, setPageNumber] = React.useState(1)
-  console.log(props.view)
-  console.log(itemsToRender)
-  function handleItemsAmount(val) {
-    console.log(val)
-    setItemsToRender(props.goods.slice(0, val))
-    setPageNumber(1)
+
+  React.useEffect(()=> {    
+    handleSort()
+  },[ props.view, pageNumber ])
+
+  function handleItemsAmount(val) {  
     props.setView({
       ...props.view,
       perPage: Number(val),
     })
+    setPageNumber(1)
   }
 
   function handleItemsSort(val) {
-    console.log(val)
     props.setView({
       ...props.view,
       sortBy: val,
     })
+    setPageNumber(1)    
+  }
+
+  function handleSort() {
+
+    const itemsStart = props.view.perPage * (pageNumber - 1)      
+    const itemsEnd = itemsStart + props.view.perPage
     
-    if(val === 'По алфавиту') {
+    if(props.view.sortBy === 'По алфавиту') {      
       setItemsToRender(props.goods.slice(0).sort((a, b)=> {
         if (a.name > b.name) {
           return 1;
@@ -37,47 +44,35 @@ function Shop(props) {
           return -1;
         }        
         return 0;
-        }).slice(0, props.view.perPage))  
-      }
-
-    if(val === 'По цене') {
-      setItemsToRender(props.goods.slice(0).sort((a, b)=> a.price - b.price).slice(0, props.view.perPage))
+        }).filter((good,i)=>i>=itemsStart && i<itemsEnd))        
     }
 
-    if(val === 'По актуальности') {
-      setItemsToRender(props.goods.slice(0, props.view.perPage))
+    if(props.view.sortBy === 'По цене') {
+      setItemsToRender(props.goods.slice(0).sort((a, b)=> a.price - b.price).filter((good,i)=>i>=itemsStart && i<itemsEnd)) 
     }
-    setPageNumber(1)
+
+    if(props.view.sortBy === 'По актуальности') {
+      setItemsToRender(props.goods.filter((good,i)=>i>=itemsStart && i<itemsEnd))
+    }
+
   }
 
   function leftPage() {
     if(pageNumber > 1) {
-      const page = pageNumber - 1
-      const itemsStart = props.view.perPage * (page-1)      
-      const itemsEnd = itemsStart + props.view.perPage
-      setItemsToRender(props.goods.slice(itemsStart, itemsEnd))      
-      setPageNumber(page)
+      setPageNumber(pageNumber - 1) 
     }    
   }
 
   function rightPage() {
     const maxPagesAmount = props.goods.length / props.view.perPage
-    if(pageNumber < maxPagesAmount) {
-      const page = pageNumber + 1
-      const itemsStart = props.view.perPage * (page-1)
-      const itemsEnd = itemsStart + props.view.perPage
-      setItemsToRender(props.goods.slice(itemsStart, itemsEnd))
-      setPageNumber(page)
+    if(pageNumber < maxPagesAmount) { 
+      setPageNumber(pageNumber + 1)
     }    
   } 
 
   function numberPage(page) {
     setPageNumber(page)
-    const itemsStart = props.view.perPage * (page-1)      
-    const itemsEnd = itemsStart + props.view.perPage
-    setItemsToRender(props.goods.slice(itemsStart, itemsEnd))      
   }
-
 
   function handleGridView() {
     props.setView({
