@@ -13,6 +13,7 @@ import Profile from './components/profile/profile';
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
 import { goodsPerPage, goodsSortBy, goods } from './utils/constants';
+import { userCartContext } from './context/UserCartContext';
 function App() {
 
   const [myCart, setMyCart] = React.useState([]);
@@ -22,6 +23,8 @@ function App() {
     sortBy: goodsSortBy,
     perPage: goodsPerPage
   });
+
+
 
   // const [goodsAmount, setGoodsAmount] = React.useState(goodsPerPage);
   
@@ -59,6 +62,7 @@ function App() {
 
   return (
     <>
+      <userCartContext.Provider value={myCart}>
       <Header />
       <Routes>
         <Route
@@ -113,6 +117,7 @@ function App() {
         />
       </Routes>
       <Footer />
+      </userCartContext.Provider>
     </>
   )
 }
