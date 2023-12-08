@@ -23,10 +23,6 @@ function App() {
     sortBy: goodsSortBy,
     perPage: goodsPerPage
   });
-
-
-
-  // const [goodsAmount, setGoodsAmount] = React.useState(goodsPerPage);
   
   //добавляет элемент в корзину при нажатии кнопки корзины на товаре на странице shop
   function handleAddItem(item) {    
@@ -50,6 +46,7 @@ function App() {
     }             
   }
 
+  //поставить лайк товару
   function handleItemLike(item) {
     const el = likedItems.map(elem => elem.name).indexOf(item.name)
     console.log(el)
@@ -88,7 +85,7 @@ function App() {
         <Route 
           path="cart"
           element={<Cart 
-          items={myCart}
+          // items={myCart}
           addQuantity={handleChangeQuantity}
           setCart={setMyCart}
           />}

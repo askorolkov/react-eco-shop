@@ -1,6 +1,7 @@
 import './cart.css';
 import React from 'react';
 import CartItem from './cartItem';
+import { userCartContext } from '../../context/UserCartContext';
 
 function Cart(props) {
 
@@ -11,11 +12,11 @@ function Cart(props) {
   });
 
   const [clearPopup, setClearPopup] = React.useState(false)
+  const items = React.useContext(userCartContext)
 
-
-  const totalPrice = props.items.length > 0 ? props.items.reduce((acc, val) => acc + (val.price * val.quantity), 0) : 0;
-  const totalAmount = props.items.length > 0 ? props.items.reduce((acc, val)=> acc + val.quantity, 0) : 0;
-  console.log(props.items)
+  const totalPrice = items.length > 0 ? items.reduce((acc, val) => acc + (val.price * val.quantity), 0) : 0;
+  const totalAmount = items.length > 0 ? items.reduce((acc, val)=> acc + val.quantity, 0) : 0;
+  console.log(items)
 
   function openClearPopup() {
     setClearPopup(true)
@@ -71,7 +72,7 @@ function Cart(props) {
           <p className="cart__header-title">Всего</p>
         </div>
         <section className="cart__items">
-          {props.items.map((item, i) => (            
+          {items.map((item, i) => (            
             <CartItem 
               key={i}
               name={item.name}
@@ -85,7 +86,7 @@ function Cart(props) {
           }
         </section>
         {
-        props.items.length > 0 ?
+        items.length > 0 ?
           <div className="cart__footer">       
             <label htmlFor="" className="cart__footer-promo">
               Промокод
