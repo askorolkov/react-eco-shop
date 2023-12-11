@@ -1,8 +1,17 @@
-# React + Vite
+# Интернет-магазин полезного питания
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## React + vite
 
-Currently, two official plugins are available:
+----------------
+### Что реализовано на данный момент:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Главная страница с анимированной каруселью товаров, фильтры по категориям.
+2. Страница магазина с различными сортировками, возможностью добавить товар в корзину и поставить лайк.
+3. Страница профиля данными пользователя и списком лайкнутых товаров.
+4. Страница корзины с возможностью добавлять\убавлять количество конкретного товара.
+
+----------------
+
+#### База данных на этом этапе отсутствует, список товаров находится в файле constants.js, промежуточные значения хранятся в стейтах
+
+
