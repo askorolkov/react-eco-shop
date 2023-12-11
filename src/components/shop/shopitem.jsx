@@ -1,7 +1,6 @@
 import './shopitem.css';
 
 function ShopItem(props) {
-
   function handleAdd() {  
     props.addItem({...props.good, quantity: 1 })    
   }

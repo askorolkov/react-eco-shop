@@ -9,10 +9,9 @@ import fruits from '../../images/fruits.svg';
 import honey from '../../images/honey.svg';
 import sandwich from '../../images/sandwich.svg';
 import ShopItem from '../shop/ShopItem';
-
 function Home(props) {
-
   const [ itemFilter, setItemFilter ] = React.useState(null);
+  const [ rend, setRend] = React.useState(props.goods.slice(0, 6))
 
   function handleFilter(e) {
     setItemFilter(e.currentTarget.children[0].id)
@@ -21,7 +20,20 @@ function Home(props) {
     console.log(e.currentTarget.children[0].id)
   }
 
-  console.log(itemFilter)
+  React.useEffect(()=> {
+    let x = 6;
+    const animationInterval = setInterval(()=> {
+      if (x >= props.goods.length) { 
+        x = 0;
+      }       
+      setRend(props.goods.slice(x, x+6))   
+      x += 6;
+  }, 10000) 
+    if(itemFilter) {
+      clearInterval(animationInterval)
+    }
+  return ()=> clearInterval(animationInterval)
+  }, [ itemFilter ])
 
   return (
     <div className="home">
@@ -68,30 +80,18 @@ function Home(props) {
           Перекус
         </label>        
       </fieldset> 
-      <section className="home__grid">
-        {
-        itemFilter ? 
-        props.goods.filter(good => good.type === itemFilter).map((good, i)=> (
-          <ShopItem 
-            key={i}             
+      <section className="home__grid">        
+        <div className={`carousel ${!itemFilter && 'carousel_animated'}`}>                     
+          {rend.map((good,i)=> (
+            <ShopItem
+            key={i}
             view='grid'       
             good={good}
             addItem={props.addItem}
             addLike={props.addLike}
-            liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
-            />
-        )) :
-        props.goods.map((good, i)=> (
-          <ShopItem 
-            key={i}             
-            view='grid'       
-            good={good}
-            addItem={props.addItem}
-            addLike={props.addLike}
-            liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
-            />
-        ))        
-        }
+            liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}/>
+          ))}             
+        </div>        
       </section>  
     </div>
   )

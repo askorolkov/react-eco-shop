@@ -90,12 +90,10 @@
 }
 
 .home__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 270px);
-  grid-template-rows: auto;
-  gap: 30px;
+  display: flex;
+  margin: 0 auto;
   justify-content: center;
-  padding-top: 40px;
+  padding-top: 40px;  
 }
 
 .home__filter:has(input:checked) {
@@ -105,3 +103,37 @@
 .home__radio {
   visibility: hidden;
 }
+
+.carousel {
+  display: grid;
+  grid-template-columns: repeat(3, 270px);
+  grid-template-rows: repeat(2, auto);
+  gap: 30px;
+}
+
+.carousel_animated {
+  animation: 10s linear 0s infinite fadein; 
+}
+
+/* @keyframes slider {
+  0% {
+    transform: translateX(0%);
+  }
+  20% {
+    transform: translateX(870px);
+  }
+
+  100% {
+    transform: translateX(870px);
+  }
+} */
+
+@keyframes fadein {
+  0% {
+    opacity: 0}
+  20% {
+    opacity: 1}
+  100% {
+    opacity: 1}
+  }
+
