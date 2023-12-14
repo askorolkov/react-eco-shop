@@ -83,25 +83,25 @@ function Home(props) {
       <section className="home__grid">        
         <div className={`carousel ${!itemFilter && 'carousel_animated'}`}>                     
           {itemFilter ? 
-          props.goods.filter(good => good.type === itemFilter).map((good, i)=> (
-          <ShopItem 
-            key={i}             
-            view='grid'       
-            good={good}
-            addItem={props.addItem}
-            addLike={props.addLike}
-            liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
-            />
-        )) :
-          rend.map((good,i)=> (
-            <ShopItem
-            key={i}
-            view='grid'       
-            good={good}
-            addItem={props.addItem}
-            addLike={props.addLike}
-            liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}/>
-          ))}             
+            props.goods.filter(good => good.type === itemFilter).map((good, i)=> (
+            <ShopItem 
+              key={i}             
+              view='grid'       
+              good={good}
+              addItem={props.addItem}
+              addLike={props.addLike}
+              liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
+              />
+            )) :
+            rend.map((good,i)=> (
+              <ShopItem
+              key={i}
+              view='grid'       
+              good={good}
+              addItem={props.addItem}
+              addLike={props.addLike}
+              liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}/>
+            ))}             
         </div>        
       </section>  
     </div>
