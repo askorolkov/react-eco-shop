@@ -8,16 +8,16 @@ import handmade from '../../images/handmade.svg';
 import fruits from '../../images/fruits.svg';
 import honey from '../../images/honey.svg';
 import sandwich from '../../images/sandwich.svg';
-import ShopItem from '../shop/ShopItem';
-function Home(props) {
-  const [ itemFilter, setItemFilter ] = React.useState(null);
-  const [ rend, setRend] = React.useState(props.goods.slice(0, 6))
+import ShopItem from '../shop/shopitem';
 
-  function handleFilter(e) {
-    setItemFilter(e.currentTarget.children[0].id)
-    e.currentTarget.classList.add('home__filter_active')
-    e.currentTarget.children[0].checked = true
-    console.log(e.currentTarget.children[0].id)
+function Home(props) {
+  const [ itemFilter, setItemFilter ] = React.useState<string | null>(null);
+  const [ rend, setRend ] = React.useState(props.goods.slice(0, 6));
+
+  function handleFilter(e): void {
+    setItemFilter(e.currentTarget.children[0].id);
+    e.currentTarget.classList.add('home__filter_active');
+    e.currentTarget.children[0].checked = true;
   }
 
   React.useEffect(()=> {

@@ -3,9 +3,9 @@ import './amount.css';
 
 
 function GoodsAmount(props) {
-  const [amount, setAmount] = React.useState(props.amount);
+  const [amount, setAmount] = React.useState<number>(props.amount);
 
-  function handleChange(val) {
+  function handleChange(val: number) {
     setAmount(val)
     props.onChange(val)
   }
@@ -14,7 +14,7 @@ function GoodsAmount(props) {
     <select
       className='amount'
       value={amount} 
-      onChange={e => handleChange(e.target.value)} >
+      onChange={e => handleChange(Number(e.target.value))}>
         <option value="4">4</option>
         <option value="8">8</option>
         <option value="16">16</option>

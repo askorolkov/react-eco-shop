@@ -9,7 +9,6 @@ import instagram from '../../images/instagram.svg';
 import flagru from '../../images/flagru.png';
 import cart from '../../images/cart.svg';
 
-
 function Header() {
   return (
     <header className="header">
@@ -60,18 +59,7 @@ function Header() {
               <button className="header__button">Получить предложение</button>
             </li> */}
           </ul>
-
         </nav>
-        {/* <Routes>
-          <Route path="" element={<Link to='' className='header__link'>Home</Link>}></Route>
-          <Route path="" element={<Link to='' className='header__link'>Shop</Link>}></Route>
-          <Route path="" element={<Link to='' className='header__link'>Pages</Link>}></Route>
-          <Route path="" element={<Link to='' className='header__link'>Blog</Link>}></Route>
-          <Route path="" element={<Link to='' className='header__link'>Contact</Link>}></Route>
-          <Route path="" element={<Link to='' className='header__link'>Profile</Link>}></Route>
-          <Route path="" element={<Link to='' className='header__link'>Cart</Link>}></Route>          
-        </Routes>   */}
-
       </div>
     </header>
   )

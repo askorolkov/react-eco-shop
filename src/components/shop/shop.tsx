@@ -1,12 +1,27 @@
 import React from 'react';
 import './shop.css';
-import ShopItem from './ShopItem';
+import ShopItem from './shopitem';
 import ShopPages from './shoppages';
 import GoodsAmount from '../sort/amount';
 import GoodsSort from '../sort/goodssort';
+import { IShopProduct, 
+         ICartProduct,
+         TSortBy,
+         TPerPage,
+        } from '../../utils/constants';
+import { IShopView } from '../../App';
 
-function Shop(props) { 
-  const [itemsToRender, setItemsToRender] = React.useState(props.goods.slice(0, props.view.perPage));
+interface IShopProps {
+  goods: IShopProduct[],
+  addItem: (item: ICartProduct) => void,
+  addLike: (item: IShopProduct) => void,
+  likedItems: IShopProduct[],
+  view: IShopView,
+  setView: (item: IShopView) => void,
+}
+
+function Shop(props: IShopProps) { 
+  const [itemsToRender, setItemsToRender] = React.useState<IShopProduct[]>(props.goods.slice(0, props.view.perPage));
   const [showPagesButtons, setShowPagesButtons] = React.useState(false);
   const [pageNumber, setPageNumber] = React.useState(1)
 
@@ -14,15 +29,15 @@ function Shop(props) {
     handleSort()
   },[ props.view, pageNumber ])
 
-  function handleItemsAmount(val) {  
+  function handleItemsAmount(val: TPerPage) {  
     props.setView({
       ...props.view,
-      perPage: Number(val),
+      perPage: val,
     })
     setPageNumber(1)
   }
 
-  function handleItemsSort(val) {
+  function handleItemsSort(val: TSortBy) {
     props.setView({
       ...props.view,
       sortBy: val,
@@ -57,34 +72,27 @@ function Shop(props) {
 
   }
 
-  function leftPage() {
+  function leftPage(): void {
     if(pageNumber > 1) {
       setPageNumber(pageNumber - 1) 
     }    
   }
 
-  function rightPage() {
+  function rightPage(): void {
     const maxPagesAmount = props.goods.length / props.view.perPage
     if(pageNumber < maxPagesAmount) { 
       setPageNumber(pageNumber + 1)
     }    
   } 
 
-  function numberPage(page) {
+  function numberPage(page: number): void {
     setPageNumber(page)
   }
 
-  function handleGridView() {
+  function handleViewChange(val: 'grid' | 'list'): void {
     props.setView({
       ...props.view,
-      viewType: 'grid'
-    })
-  }
-
-  function handleListView() {
-    props.setView({
-      ...props.view,
-      viewType: 'list'
+      viewType: val
     })
   }
 
@@ -111,8 +119,8 @@ function Shop(props) {
               onChange={handleItemsSort}
             />
           </label>
-          <button className="shop__view" id='list' onClick={handleListView}></button>
-          <button className="shop__view" id='grid' onClick={handleGridView}></button>
+          <button className="shop__view" id='list' onClick={()=>handleViewChange('list')}></button>
+          <button className="shop__view" id='grid' onClick={()=>handleViewChange('grid')}></button>
           <div className="shop__form">
             <input type="search" className="shop__input" placeholder='Поиск' />  
             <button className="shop__search"></button>

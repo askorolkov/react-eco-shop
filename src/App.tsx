@@ -12,20 +12,35 @@ import Cart from './components/cart/cart';
 import Profile from './components/profile/profile';
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
-import { goodsPerPage, goodsSortBy, goods } from './utils/constants';
+import { goodsPerPage, 
+         goodsSortBy, 
+         goods,         
+         viewType,
+         IShopProduct,
+         ICartProduct,
+         TSortBy,
+         TPerPage,
+        } from './utils/constants';
 import { userCartContext } from './context/UserCartContext';
-function App() {
 
-  const [myCart, setMyCart] = React.useState([]);
-  const [likedItems, setLikedItems] = React.useState([]);
-  const [shopView, setShopView] = React.useState({
-    viewType:'grid', 
+
+export interface IShopView {
+  viewType: 'grid' | 'list',
+  sortBy: TSortBy,
+  perPage: TPerPage,
+}
+
+function App() {
+  const [myCart, setMyCart] = React.useState<ICartProduct[]>([]);
+  const [likedItems, setLikedItems] = React.useState<IShopProduct[]>([]);
+  const [shopView, setShopView] = React.useState<IShopView>({
+    viewType: viewType, 
     sortBy: goodsSortBy,
     perPage: goodsPerPage
   });
   
   //добавляет элемент в корзину при нажатии кнопки корзины на товаре на странице shop
-  function handleAddItem(item) {    
+  function handleAddItem(item: ICartProduct): void {    
     const el = myCart.map(elem => elem.name).indexOf(item.name)
     console.log(el)
     console.log(item)
@@ -38,7 +53,7 @@ function App() {
 
   //изменяет количество товара в корзине при нажатии + или - на товаре на странице cart
   //ищет товар в корзине по имени и задает количество равное amount
-  function handleChangeQuantity(itemName, amount) {  
+  function handleChangeQuantity(itemName: string, amount: number): void {  
     if(amount === 0) {
       setMyCart(myCart.filter((item) => item.name!==itemName))      
     } else {
@@ -47,7 +62,7 @@ function App() {
   }
 
   //поставить лайк товару
-  function handleItemLike(item) {
+  function handleItemLike(item: IShopProduct): void {
     const el = likedItems.map(elem => elem.name).indexOf(item.name)
     console.log(el)
     if (el===-1) {

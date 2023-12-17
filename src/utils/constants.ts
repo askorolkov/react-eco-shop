@@ -1,7 +1,19 @@
+export interface IShopProduct {
+  name: string,
+  type: string,
+  price: number,
+  src: string,
+}; 
+
+export interface ICartProduct extends IShopProduct {
+  quantity: number;
+}
+
 export const goodsPerPage = 8;
 export const goodsSortBy = 'По актуальности';
+export const viewType = 'grid';
 
-export const goods = [
+export const goods: IShopProduct[] = [
   {name: 'Инжир сушеный',
   type: 'fruits',
   price: 100,
@@ -76,6 +88,6 @@ export const goods = [
   src:'../src/images/herbal1.png'},
 ]   
 
-export const description = 
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus massa enim. Nullam id varius nunc id varius nunc.'
+// export const description: string = 
+//   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus massa enim. Nullam id varius nunc id varius nunc.'
   

@@ -1,11 +1,21 @@
 import './shopitem.css';
+import { IShopProduct, ICartProduct } from '../../utils/constants';
 
-function ShopItem(props) {
-  function handleAdd() {  
+interface IItemProps {
+  view: string,
+  good: IShopProduct,
+  addItem: (item: ICartProduct) => void,
+  addLike: (item: IShopProduct) => void,
+  liked: number,
+}
+
+function ShopItem(props: IItemProps) {
+
+  function handleAdd(): void {  
     props.addItem({...props.good, quantity: 1 })    
   }
 
-  function handleLike() {
+  function handleLike(): void {
     props.addLike(props.good)
   }
 
@@ -31,7 +41,7 @@ function ShopItem(props) {
       <div className="shopitem__list-info">
         <p className="shopitem__info">{props.good.name}</p>
         <p className="shopitem__info">{props.good.price} $</p>
-        <p className="shopitem__list-desc">{props.good.description}</p>
+        <p className="shopitem__list-desc">description</p>
         <div className="shopitem__list-buttons">
           <button
             onClick={handleAdd}
