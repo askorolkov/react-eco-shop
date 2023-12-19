@@ -27,7 +27,11 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
 
   useEffect(()=> {    
     handleSort()
-  },[ view, pageNumber ])
+  }, [ view, pageNumber ])
+
+  useEffect(()=> {
+    goods.length <= itemsToRender.length ? setShowPagesButtons(false) : setShowPagesButtons(true)
+  }, [ itemsToRender ])
 
   function handleItemsAmount(val: TPerPage) {  
     setView({
@@ -69,7 +73,6 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
     if(view.sortBy === 'По актуальности') {
       setItemsToRender(goods.filter((good,i)=>i>=itemsStart && i<itemsEnd))
     }
-
   }
 
   function leftPage(): void {
@@ -84,21 +87,13 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
       setPageNumber(pageNumber + 1)
     }    
   } 
-
-  function numberPage(page: number): void {
-    setPageNumber(page)
-  }
-
+  
   function handleViewChange(val: 'grid' | 'list'): void {
     setView({
       ...view,
       viewType: val
     })
   }
-
-  useEffect(()=> {
-    goods.length <= itemsToRender.length ? setShowPagesButtons(false) : setShowPagesButtons(true)
-  }, [ itemsToRender ])
   
   return (
     <div className="shop">
@@ -157,9 +152,9 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
         <ShopPages 
           leftPage={leftPage} 
           rightPage={rightPage} 
-          amount={Math.ceil(goods.length / view.perPage)}
+          pagesAmount={Math.ceil(goods.length / view.perPage)}
           pageNumber={pageNumber}
-          numberPage={numberPage}
+          setPageNumber={setPageNumber}
         />
       }
     </div>    

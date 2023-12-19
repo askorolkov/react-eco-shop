@@ -41,7 +41,6 @@ function ShopItem({ view, good, addItem, addLike, liked }: IItemProps) {
       <div className="shopitem__list-info">
         <p className="shopitem__info">{good.name}</p>
         <p className="shopitem__info">{good.price} $</p>
-        <p className="shopitem__list-desc">description</p>
         <div className="shopitem__list-buttons">
           <button
             onClick={handleAdd}
@@ -49,8 +48,9 @@ function ShopItem({ view, good, addItem, addLike, liked }: IItemProps) {
           <button 
             onClick={handleLike}
             className={`shopitem__list-button ${liked == -1? 'shopitem__like' : 'shopitem__like_active'}`}></button>
-        </div>
-      </div>      
+        </div>        
+      </div>   
+      <p className="shopitem__list-desc">description</p>
     </div>    
   )
 }
