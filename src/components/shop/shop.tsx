@@ -20,26 +20,26 @@ interface IShopProps {
   setView: (item: IShopView) => void,
 }
 
-function Shop(props: IShopProps) { 
-  const [itemsToRender, setItemsToRender] = useState<IShopProduct[]>(props.goods.slice(0, props.view.perPage));
+function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps) { 
+  const [itemsToRender, setItemsToRender] = useState<IShopProduct[]>(goods.slice(0, view.perPage));
   const [showPagesButtons, setShowPagesButtons] = useState(false);
   const [pageNumber, setPageNumber] = useState(1)
 
   useEffect(()=> {    
     handleSort()
-  },[ props.view, pageNumber ])
+  },[ view, pageNumber ])
 
   function handleItemsAmount(val: TPerPage) {  
-    props.setView({
-      ...props.view,
+    setView({
+      ...view,
       perPage: val,
     })
     setPageNumber(1)
   }
 
   function handleItemsSort(val: TSortBy) {
-    props.setView({
-      ...props.view,
+    setView({
+      ...view,
       sortBy: val,
     })
     setPageNumber(1)    
@@ -47,11 +47,11 @@ function Shop(props: IShopProps) {
 
   function handleSort() {
 
-    const itemsStart = props.view.perPage * (pageNumber - 1)      
-    const itemsEnd = itemsStart + props.view.perPage
+    const itemsStart = view.perPage * (pageNumber - 1)      
+    const itemsEnd = itemsStart + view.perPage
     
-    if(props.view.sortBy === 'По алфавиту') {      
-      setItemsToRender(props.goods.slice(0).sort((a, b)=> {
+    if(view.sortBy === 'По алфавиту') {      
+      setItemsToRender(goods.slice(0).sort((a, b)=> {
         if (a.name > b.name) {
           return 1;
         }
@@ -62,12 +62,12 @@ function Shop(props: IShopProps) {
         }).filter((good,i)=>i>=itemsStart && i<itemsEnd))        
     }
 
-    if(props.view.sortBy === 'По цене') {
-      setItemsToRender(props.goods.slice(0).sort((a, b)=> a.price - b.price).filter((good,i)=>i>=itemsStart && i<itemsEnd)) 
+    if(view.sortBy === 'По цене') {
+      setItemsToRender(goods.slice(0).sort((a, b)=> a.price - b.price).filter((good,i)=>i>=itemsStart && i<itemsEnd)) 
     }
 
-    if(props.view.sortBy === 'По актуальности') {
-      setItemsToRender(props.goods.filter((good,i)=>i>=itemsStart && i<itemsEnd))
+    if(view.sortBy === 'По актуальности') {
+      setItemsToRender(goods.filter((good,i)=>i>=itemsStart && i<itemsEnd))
     }
 
   }
@@ -79,7 +79,7 @@ function Shop(props: IShopProps) {
   }
 
   function rightPage(): void {
-    const maxPagesAmount = props.goods.length / props.view.perPage
+    const maxPagesAmount = goods.length / view.perPage
     if(pageNumber < maxPagesAmount) { 
       setPageNumber(pageNumber + 1)
     }    
@@ -90,14 +90,14 @@ function Shop(props: IShopProps) {
   }
 
   function handleViewChange(val: 'grid' | 'list'): void {
-    props.setView({
-      ...props.view,
+    setView({
+      ...view,
       viewType: val
     })
   }
 
   useEffect(()=> {
-    props.goods.length <= itemsToRender.length ? setShowPagesButtons(false) : setShowPagesButtons(true)
+    goods.length <= itemsToRender.length ? setShowPagesButtons(false) : setShowPagesButtons(true)
   }, [ itemsToRender ])
   
   return (
@@ -108,14 +108,14 @@ function Shop(props: IShopProps) {
           <label className="shop__label">
             На странице:
             <GoodsAmount 
-              amount={props.view.perPage}
+              amount={view.perPage}
               onChange={handleItemsAmount}
               />       
           </label>
           <label className="shop__label">
             Сортировка:
             <GoodsSort 
-              sortBy={props.view.sortBy}
+              sortBy={view.sortBy}
               onChange={handleItemsSort}
             />
           </label>
@@ -127,16 +127,16 @@ function Shop(props: IShopProps) {
           </div>
         </div>
       </div>
-      { props.view.viewType === 'grid' ? 
+      { view.viewType === 'grid' ? 
         <section className="shop__grid">
         {itemsToRender.map((good, i) => (
           <ShopItem 
             key={i}             
-            view={props.view.viewType}           
+            view={view.viewType}           
             good={good}
-            addItem={props.addItem}
-            addLike={props.addLike}
-            liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
+            addItem={addItem}
+            addLike={addLike}
+            liked={likedItems.map(elem => elem.name).indexOf(good.name)}
              />
         ))}
         </section> :
@@ -144,11 +144,11 @@ function Shop(props: IShopProps) {
         {itemsToRender.map((good, i) => (
             <ShopItem 
               key={i}               
-              view={props.view.viewType}              
+              view={view.viewType}              
               good={good}
-              addItem={props.addItem}
-              addLike={props.addLike}
-              liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
+              addItem={addItem}
+              addLike={addLike}
+              liked={likedItems.map(elem => elem.name).indexOf(good.name)}
               />
           ))}
         </section>      
@@ -157,9 +157,8 @@ function Shop(props: IShopProps) {
         <ShopPages 
           leftPage={leftPage} 
           rightPage={rightPage} 
-          amount={Math.ceil(props.goods.length / props.view.perPage)}
+          amount={Math.ceil(goods.length / view.perPage)}
           pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
           numberPage={numberPage}
         />
       }

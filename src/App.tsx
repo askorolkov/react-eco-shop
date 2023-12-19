@@ -100,7 +100,6 @@ function App() {
         <Route 
           path="cart"
           element={<Cart 
-          // items={myCart}
           addQuantity={handleChangeQuantity}
           setCart={setMyCart}
           />}

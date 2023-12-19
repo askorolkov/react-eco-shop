@@ -10,9 +10,9 @@ import honey from '../../images/honey.svg';
 import sandwich from '../../images/sandwich.svg';
 import ShopItem from '../shop/shopitem';
 
-function Home(props) {
+function Home({ goods, addLike, addItem, likedItems }) {
   const [ itemFilter, setItemFilter ] = useState<string | null>(null);
-  const [ rend, setRend ] = useState(props.goods.slice(0, 6));
+  const [ rend, setRend ] = useState(goods.slice(0, 6));
 
   function handleFilter(e): void {
     setItemFilter(e.currentTarget.children[0].id);
@@ -23,10 +23,10 @@ function Home(props) {
   useEffect(()=> {
     let x = 6;
     const animationInterval = setInterval(()=> {
-      if (x >= props.goods.length) { 
+      if (x >= goods.length) { 
         x = 0;
       }       
-      setRend(props.goods.slice(x, x+6))   
+      setRend(goods.slice(x, x+6))   
       x += 6;
   }, 10000) 
     if(itemFilter) {
@@ -83,14 +83,14 @@ function Home(props) {
       <section className="home__grid">        
         <div className={`carousel ${!itemFilter && 'carousel_animated'}`}>                     
           {itemFilter ? 
-            props.goods.filter(good => good.type === itemFilter).map((good, i)=> (
+            goods.filter(good => good.type === itemFilter).map((good, i)=> (
             <ShopItem 
               key={i}             
               view='grid'       
               good={good}
-              addItem={props.addItem}
-              addLike={props.addLike}
-              liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}
+              addItem={addItem}
+              addLike={addLike}
+              liked={likedItems.map(elem => elem.name).indexOf(good.name)}
               />
             )) :
             rend.map((good,i)=> (
@@ -98,9 +98,9 @@ function Home(props) {
               key={i}
               view='grid'       
               good={good}
-              addItem={props.addItem}
-              addLike={props.addLike}
-              liked={props.likedItems.map(elem => elem.name).indexOf(good.name)}/>
+              addItem={addItem}
+              addLike={addLike}
+              liked={likedItems.map(elem => elem.name).indexOf(good.name)}/>
             ))}             
         </div>        
       </section>  

@@ -2,18 +2,18 @@ import { useState } from 'react';
 import './amount.css';
 
 
-function GoodsAmount(props) {
-  const [amount, setAmount] = useState<number>(props.amount);
+function GoodsAmount({ amount, onChange }) {
+  const [ selectedAmount, setAmount] = useState<number>(amount);
 
   function handleChange(val: number) {
     setAmount(val)
-    props.onChange(val)
+    onChange(val)
   }
   
   return (
     <select
       className='amount'
-      value={amount} 
+      value={selectedAmount} 
       onChange={e => handleChange(Number(e.target.value))}>
         <option value="4">4</option>
         <option value="8">8</option>

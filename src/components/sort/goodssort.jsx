@@ -2,12 +2,12 @@ import { useState } from 'react';
 import './amount.css';
 
 
-function GoodsSort(props) {
-  const [selectedSort, setSelectedSort] = useState(props.sortBy);
+function GoodsSort({ sortBy, onChange }) {
+  const [selectedSort, setSelectedSort] = useState(sortBy);
 
   function handleChange(val) {
     setSelectedSort(val)
-    props.onChange(val)
+    onChange(val)
   }
 
   return (

@@ -1,24 +1,22 @@
 import './shoppages.css';
 
-function ShopPages(props) {  
-
+function ShopPages({ leftPage, rightPage, amount, pageNumber, numberPage }) {  
   let buts = [];
-  for(let i=1; i < props.amount+1; i++) {
+  for(let i=1; i < amount+1; i++) {
     buts.push(
       <button 
-        className={`shop__page ${props.pageNumber === i && 'shop__page_active'}`} 
+        className={`shop__page ${pageNumber === i && 'shop__page_active'}`} 
         key={i}
-        onClick={()=>props.numberPage(i)}>
+        onClick={()=>numberPage(i)}>
         {i}
-      </button>)
-    
+      </button>)    
     }
 
   return (
     <div className="shop__pages">
-      <button className='shop__arrow' onClick={props.leftPage}>&larr;</button>
-      {props.amount > 1 && buts}
-      <button className='shop__arrow' onClick={props.rightPage}>&rarr;</button>
+      <button className='shop__arrow' onClick={leftPage}>&larr;</button>
+      {amount > 1 && buts}
+      <button className='shop__arrow' onClick={rightPage}>&rarr;</button>
     </div>
   )
 }

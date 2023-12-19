@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import CartItem from './cartItem';
 import { userCartContext } from '../../context/UserCartContext';
 
-function Cart(props) {
+function Cart({ addQuantity, setCart }) {
 
   const [popup, setPopup] = useState({
     show: false, 
@@ -27,7 +27,7 @@ function Cart(props) {
   }
 
   function handleCartClear() {
-    props.setCart([])
+    setCart([])
     setClearPopup(false)
   } 
 
@@ -39,7 +39,7 @@ function Cart(props) {
   }
 
   function handleDelete() {
-    props.addQuantity(popup.name, popup.amount - 1)
+    addQuantity(popup.name, popup.amount - 1)
     setPopup({
       ...popup,
       show: false
@@ -47,7 +47,7 @@ function Cart(props) {
   }
 
   function handleIncreaseAmount(name, amount) {     
-    props.addQuantity(name, amount + 1)    
+    addQuantity(name, amount + 1)    
   }
 
   function handleReduceAmount(name, amount) {
@@ -58,7 +58,7 @@ function Cart(props) {
         amount: amount,
       })
     } else {
-      props.addQuantity(name, amount - 1)  
+      addQuantity(name, amount - 1)  
     }
   } 
 
