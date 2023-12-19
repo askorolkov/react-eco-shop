@@ -1,6 +1,6 @@
 import './cartItem.css';
-function CartItem(props) {
 
+function CartItem(props) {
   return(
     <div className="cartitem">
       <img src={props.image} alt="" className="cartitem__img" />

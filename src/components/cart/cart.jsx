@@ -1,18 +1,18 @@
 import './cart.css';
-import React from 'react';
+import { useState, useContext } from 'react';
 import CartItem from './cartItem';
 import { userCartContext } from '../../context/UserCartContext';
 
 function Cart(props) {
 
-  const [popup, setPopup] = React.useState({
+  const [popup, setPopup] = useState({
     show: false, 
     name: null,
     amount: null,
   });
 
-  const [clearPopup, setClearPopup] = React.useState(false)
-  const items = React.useContext(userCartContext)
+  const [clearPopup, setClearPopup] = useState(false)
+  const items = useContext(userCartContext)
 
   const totalPrice = items.length > 0 ? items.reduce((acc, val) => acc + (val.price * val.quantity), 0) : 0;
   const totalAmount = items.length > 0 ? items.reduce((acc, val)=> acc + val.quantity, 0) : 0;

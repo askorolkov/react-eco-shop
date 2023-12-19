@@ -13,6 +13,7 @@ import shopicon1 from '../../images/shopicon1.svg';
 import shopicon2 from '../../images/shopicon2.svg';
 import shopicon3 from '../../images/shopicon3.svg';
 import shopicon4 from '../../images/shopicon4.svg';
+
 function Footer() {
   return (
     <footer className="footer">

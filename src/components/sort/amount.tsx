@@ -1,9 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
 import './amount.css';
 
 
 function GoodsAmount(props) {
-  const [amount, setAmount] = React.useState<number>(props.amount);
+  const [amount, setAmount] = useState<number>(props.amount);
 
   function handleChange(val: number) {
     setAmount(val)

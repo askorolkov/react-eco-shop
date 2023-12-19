@@ -1,5 +1,5 @@
 import './home.css';
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import herb from '../../images/herb.svg';
 import best from '../../images/best.svg';
@@ -11,8 +11,8 @@ import sandwich from '../../images/sandwich.svg';
 import ShopItem from '../shop/shopitem';
 
 function Home(props) {
-  const [ itemFilter, setItemFilter ] = React.useState<string | null>(null);
-  const [ rend, setRend ] = React.useState(props.goods.slice(0, 6));
+  const [ itemFilter, setItemFilter ] = useState<string | null>(null);
+  const [ rend, setRend ] = useState(props.goods.slice(0, 6));
 
   function handleFilter(e): void {
     setItemFilter(e.currentTarget.children[0].id);
@@ -20,7 +20,7 @@ function Home(props) {
     e.currentTarget.children[0].checked = true;
   }
 
-  React.useEffect(()=> {
+  useEffect(()=> {
     let x = 6;
     const animationInterval = setInterval(()=> {
       if (x >= props.goods.length) { 

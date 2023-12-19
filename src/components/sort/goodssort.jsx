@@ -1,9 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
 import './amount.css';
 
 
 function GoodsSort(props) {
-  const [selectedSort, setSelectedSort] = React.useState(props.sortBy);
+  const [selectedSort, setSelectedSort] = useState(props.sortBy);
 
   function handleChange(val) {
     setSelectedSort(val)

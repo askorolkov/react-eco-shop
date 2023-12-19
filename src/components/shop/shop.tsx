@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import './shop.css';
 import ShopItem from './shopitem';
 import ShopPages from './shoppages';
@@ -21,11 +21,11 @@ interface IShopProps {
 }
 
 function Shop(props: IShopProps) { 
-  const [itemsToRender, setItemsToRender] = React.useState<IShopProduct[]>(props.goods.slice(0, props.view.perPage));
-  const [showPagesButtons, setShowPagesButtons] = React.useState(false);
-  const [pageNumber, setPageNumber] = React.useState(1)
+  const [itemsToRender, setItemsToRender] = useState<IShopProduct[]>(props.goods.slice(0, props.view.perPage));
+  const [showPagesButtons, setShowPagesButtons] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1)
 
-  React.useEffect(()=> {    
+  useEffect(()=> {    
     handleSort()
   },[ props.view, pageNumber ])
 
@@ -96,7 +96,7 @@ function Shop(props: IShopProps) {
     })
   }
 
-  React.useEffect(()=> {
+  useEffect(()=> {
     props.goods.length <= itemsToRender.length ? setShowPagesButtons(false) : setShowPagesButtons(true)
   }, [ itemsToRender ])
   

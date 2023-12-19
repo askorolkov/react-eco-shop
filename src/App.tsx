@@ -1,5 +1,5 @@
 
-import React from 'react';
+import { useState } from 'react';
 import Header from './components/header/header'
 import Shop from './components/shop/shop';
 import Footer from './components/footer/footer';
@@ -31,9 +31,9 @@ export interface IShopView {
 }
 
 function App() {
-  const [myCart, setMyCart] = React.useState<ICartProduct[]>([]);
-  const [likedItems, setLikedItems] = React.useState<IShopProduct[]>([]);
-  const [shopView, setShopView] = React.useState<IShopView>({
+  const [myCart, setMyCart] = useState<ICartProduct[]>([]);
+  const [likedItems, setLikedItems] = useState<IShopProduct[]>([]);
+  const [shopView, setShopView] = useState<IShopView>({
     viewType: viewType, 
     sortBy: goodsSortBy,
     perPage: goodsPerPage
