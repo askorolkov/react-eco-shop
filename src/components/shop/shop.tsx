@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './shop.css';
 import ShopItem from './shopitem';
 import ShopPages from './shoppages';
-import GoodsAmount from '../sort/amount';
+import GoodsAmount from '../sort/goodsamount';
 import GoodsSort from '../sort/goodssort';
 import { IShopProduct, 
          ICartProduct,
