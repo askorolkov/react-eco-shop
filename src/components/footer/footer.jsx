@@ -1,18 +1,18 @@
 import './footer.css';
 import { Link } from 'react-router-dom';
-import logo from '../../images/cart.svg';
-import location from '../../images/location.svg';
-import socials01 from '../../images/socials01.svg';
-import socials02 from '../../images/socials02.svg';
-import socials03 from '../../images/socials03.svg';
-import socials04 from '../../images/socials04.svg';
-import footer1 from '../../images/footer1.svg';
-import footer2 from '../../images/footer2.svg';
-import footer3 from '../../images/footer3.svg';
-import shopicon1 from '../../images/shopicon1.svg';
-import shopicon2 from '../../images/shopicon2.svg';
-import shopicon3 from '../../images/shopicon3.svg';
-import shopicon4 from '../../images/shopicon4.svg';
+import logo from '/cart.svg';
+import location from '/location.svg';
+import socials01 from '/socials01.svg';
+import socials02 from '/socials02.svg';
+import socials03 from '/socials03.svg';
+import socials04 from '/socials04.svg';
+import footer1 from '/footer1.svg';
+import footer2 from '/footer2.svg';
+import footer3 from '/footer3.svg';
+import shopicon1 from '/shopicon1.svg';
+import shopicon2 from '/shopicon2.svg';
+import shopicon3 from '/shopicon3.svg';
+import shopicon4 from '/shopicon4.svg';
 
 function Footer() {
   return (

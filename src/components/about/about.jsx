@@ -1,8 +1,8 @@
 import './about.css';
-import about1 from '../../images/about1.svg';
-import about2 from '../../images/about2.svg';
-import about3 from '../../images/about3.svg';
-import about4 from '../../images/about4.svg';
+import about1 from '/about1.svg';
+import about2 from '/about2.svg';
+import about3 from '/about3.svg';
+import about4 from '/about4.svg';
 function About() {
   return (
     <div className="about">

@@ -1,13 +1,13 @@
 import './home.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import herb from '../../images/herb.svg';
-import best from '../../images/best.svg';
-import herbal from '../../images/herbal.svg';
-import handmade from '../../images/handmade.svg';
-import fruits from '../../images/fruits.svg';
-import honey from '../../images/honey.svg';
-import sandwich from '../../images/sandwich.svg';
+import herb from '/herb.svg';
+import best from '/best.svg';
+import herbal from '/herbal.svg';
+import handmade from '/handmade.svg';
+import fruits from '/fruits.svg';
+import honey from '/honey.svg';
+import sandwich from '/sandwich.svg';
 import ShopItem from '../shop/shopitem';
 
 function Home({ goods, addLike, addItem, likedItems }) {

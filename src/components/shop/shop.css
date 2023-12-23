@@ -57,14 +57,14 @@
 }
 
 #grid {
-  background: url(../../images/grid_view.svg);
+  background: url(/grid_view.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 #list {
-  background: url(../../images/list_view.svg);  
+  background: url(/list_view.svg);  
   background-size: 150%;
   background-repeat: no-repeat;
   background-position: center;
@@ -94,7 +94,7 @@
   border-radius: 0;
   height: 30px;
   width: 30px;
-  background-image: url(../../images/search.svg);
+  background-image: url(/search.svg);
   background-position: center;
   background-repeat: no-repeat;
 }

@@ -1,13 +1,13 @@
 import './header.css'
 import { Link } from 'react-router-dom';
-import phone from '../../images/phone.svg';
-import mail from '../../images/mail.svg';
-import facebook from '../../images/facebook.svg';
-import twitter from '../../images/twitter.svg';
-import instagram from '../../images/instagram.svg';
+import phone from '/phone.svg';
+import mail from '/mail.svg';
+import facebook from '/facebook.svg';
+import twitter from '/twitter.svg';
+import instagram from '/instagram.svg';
 // import brit from '../../images/brit.svg';
-import flagru from '../../images/flagru.png';
-import cart from '../../images/cart.svg';
+import flagru from '/flagru.png';
+import cart from '/cart.svg';
 
 function Header() {
   return (

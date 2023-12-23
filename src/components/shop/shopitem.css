@@ -103,20 +103,20 @@
 }
 
 .shopitem__add {  
-  background-image: url(../../images/addcartwhite.svg);  
+  background-image: url(/addcartwhite.svg);  
 }
 
 .shopitem__add_active {
-  background-image: url(../../images/addcartactive.svg); 
+  background-image: url(/addcartactive.svg); 
   border-color: #76A713; 
 }
 
 .shopitem__like {  
-  background-image: url(../../images/addlikewhite.svg);
+  background-image: url(/addlikewhite.svg);
 }
 
 .shopitem__like_active {
-  background-image: url(../../images/addlikeactive.svg);
+  background-image: url(/addlikeactive.svg);
   border-color: #76A713; 
 }
 
