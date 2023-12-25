@@ -1,13 +1,13 @@
 import './shoppages.css';
 
-function ShopPages({ leftPage, rightPage, pagesAmount, pageNumber, setPageNumber }) {  
+function ShopPages({ leftPage, rightPage, pagesAmount, currentPage, setCurrentPage }) {  
   let buts = [];
   for(let i=1; i < pagesAmount+1; i++) {
     buts.push(
       <button 
-        className={`shop__page ${pageNumber === i && 'shop__page_active'}`} 
+        className={`shop__page ${currentPage === i && 'shop__page_active'}`} 
         key={i}
-        onClick={()=> setPageNumber(i)}>
+        onClick={()=> setCurrentPage(i)}>
         {i}
       </button>)    
     }

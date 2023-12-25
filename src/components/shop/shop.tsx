@@ -24,20 +24,21 @@ interface IShopProps {
 function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps) { 
 
   const [itemsToRender, setItemsToRender] = useState<IShopProduct[]>(goods.slice(0, view.perPage));
-  const [pageNumber, setPageNumber] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const showPagesButtons = goods.length >= itemsToRender.length;
+  const showPagesButtons = goods.length > itemsToRender.length;
+  const pagesAmount = Math.ceil(goods.length / view.perPage);
 
-  useEffect(()=> {    
-    handleSort()
-  }, [ view, pageNumber ])
+  // useEffect(()=> {    
+  //   handleSort()
+  // }, [ view, currentPage ])
 
   function handleAmountChange(val: TPerPage) {  
     setView({
       ...view,
       perPage: val,
     })
-    setPageNumber(1)
+    setCurrentPage(1)
   }
 
   function handleSortChange(val: TSortBy) {
@@ -45,10 +46,10 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
       ...view,
       sortBy: val,
     })
-    setPageNumber(1)    
+    setCurrentPage(1)    
   }
 
-  function handleViewChange(val: TView): void {
+  function handleViewChange(val: TView) {
     setView({
       ...view,
       viewType: val
@@ -57,7 +58,7 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
 
   function handleSort() {
 
-    const itemsStart = view.perPage * (pageNumber - 1)      
+    const itemsStart = view.perPage * (currentPage - 1)      
     const itemsEnd = itemsStart + view.perPage
     
     if(view.sortBy === 'По алфавиту') {      
@@ -69,30 +70,32 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
           return -1;
         }        
         return 0;
-        }).filter((good,i)=>i>=itemsStart && i<itemsEnd))        
+        }).filter((good, i)=> i>=itemsStart && i<itemsEnd))        
     }
 
     if(view.sortBy === 'По цене') {
-      setItemsToRender(goods.slice(0).sort((a, b)=> a.price - b.price).filter((good,i)=>i>=itemsStart && i<itemsEnd)) 
+      setItemsToRender(goods.slice(0).sort((a, b)=> a.price - b.price).filter((good,i)=> i>=itemsStart && i<itemsEnd)) 
     }
 
     if(view.sortBy === 'По актуальности') {
-      setItemsToRender(goods.filter((good,i)=>i>=itemsStart && i<itemsEnd))
+      setItemsToRender(goods.filter((good,i)=> i>=itemsStart && i<itemsEnd))
     }
   }
 
-  function leftPage(): void {
-    if(pageNumber > 1) {
-      setPageNumber(pageNumber - 1) 
+  function leftPage() {
+    if(currentPage > 1) {
+      setCurrentPage(currentPage - 1) 
     }    
   }
 
-  function rightPage(): void {
+  function rightPage() {
     const maxPagesAmount = goods.length / view.perPage
-    if(pageNumber < maxPagesAmount) { 
-      setPageNumber(pageNumber + 1)
+    if(currentPage < maxPagesAmount) { 
+      setCurrentPage(currentPage + 1)
     }    
   }   
+
+  handleSort()
   
   return (
     <div className="shop">
@@ -121,7 +124,7 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
           </div>
         </div>
       </div>
-      { view.viewType === 'grid' ? 
+      {view.viewType === 'grid' ? 
         <section className="shop__grid">
         {itemsToRender.map((good, i) => (
           <ShopItem 
@@ -151,9 +154,9 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
         <ShopPages 
           leftPage={leftPage} 
           rightPage={rightPage} 
-          pagesAmount={Math.ceil(goods.length / view.perPage)}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
+          pagesAmount={pagesAmount}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         />
       }
     </div>    
