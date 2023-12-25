@@ -91,7 +91,3 @@ export const goods: IShopProduct[] = [
   price: 2,
   src:'/herbal1.png'},
 ]   
-
-// export const description: string = 
-//   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus massa enim. Nullam id varius nunc id varius nunc.'
-  
