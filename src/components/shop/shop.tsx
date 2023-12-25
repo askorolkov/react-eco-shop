@@ -22,17 +22,15 @@ interface IShopProps {
 }
 
 function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps) { 
+
   const [itemsToRender, setItemsToRender] = useState<IShopProduct[]>(goods.slice(0, view.perPage));
-  const [showPagesButtons, setShowPagesButtons] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
+
+  const showPagesButtons = goods.length >= itemsToRender.length;
 
   useEffect(()=> {    
     handleSort()
   }, [ view, pageNumber ])
-
-  useEffect(()=> {
-    goods.length <= itemsToRender.length ? setShowPagesButtons(false) : setShowPagesButtons(true)
-  }, [ itemsToRender ])
 
   function handleAmountChange(val: TPerPage) {  
     setView({
