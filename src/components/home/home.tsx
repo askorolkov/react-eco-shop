@@ -12,10 +12,10 @@ import ShopItem from '../shop/shopitem';
 
 function Home({ goods, addLike, addItem, likedItems }) {
   const [ itemFilter, setItemFilter ] = useState<string | null>(null);
-  const [ rend, setRend ] = useState(goods.slice(0, 6));
+  const [ rendered, setRendered ] = useState(goods.slice(0, 6));
 
   function handleFilter(e): void {
-    setItemFilter(e.currentTarget.children[0].id);
+    setItemFilter(e.currentTarget.id);
     e.currentTarget.classList.add('home__filter_active');
     e.currentTarget.children[0].checked = true;
   }
@@ -26,7 +26,7 @@ function Home({ goods, addLike, addItem, likedItems }) {
       if (x >= goods.length) { 
         x = 0;
       }       
-      setRend(goods.slice(x, x+6))   
+      setRendered(goods.slice(x, x+6))   
       x += 6;
   }, 10000) 
     if(itemFilter) {
@@ -49,33 +49,33 @@ function Home({ goods, addLike, addItem, likedItems }) {
         </div>      
       </div>   
       <fieldset className="home__filters">
-        <label className="home__filter"  onClick={handleFilter}>
-          <input type="radio" id="drinks" name="filters" className='home__radio'/>     
+        <label className="home__filter" id="drink" onClick={handleFilter}>
+          <input type="radio" name="filters" className='home__radio'/>     
           <img src={best} alt="" className='home__filter-img'/>     
           Напитки
         </label>
-        <label className="home__filter"  onClick={handleFilter}>
-          <input type="radio" id='herbal' name="filters" className='home__radio'/>     
+        <label className="home__filter" id='herbal' onClick={handleFilter}>
+          <input type="radio" name="filters" className='home__radio'/>     
           <img src={herbal} alt="" className='home__filter-img'/>     
           Травяной чай
         </label>
-        <label className="home__filter"  onClick={handleFilter}>
-          <input type="radio" id="sauce" name="filters"  className='home__radio'/>     
+        <label className="home__filter" id="sauce" onClick={handleFilter}>
+          <input type="radio"  name="filters"  className='home__radio'/>     
           <img src={handmade} alt="" className='home__filter-img'/>     
           Соусы
         </label>
-        <label className="home__filter"  onClick={handleFilter}>
-          <input type="radio" id="fruits" name="filters"  className='home__radio'/>     
+        <label className="home__filter" id="fruits" onClick={handleFilter}>
+          <input type="radio"  name="filters"  className='home__radio'/>     
           <img src={fruits} alt="" className='home__filter-img'/>     
           Фрукты и овощи
         </label>
-        <label className="home__filter"  onClick={handleFilter}>
-          <input type="radio" id="honey" name="filters"  className='home__radio'/>     
+        <label className="home__filter" id="honey" onClick={handleFilter}>
+          <input type="radio"  name="filters"  className='home__radio'/>     
           <img src={honey} alt="" className='home__filter-img'/>     
           Мед
         </label>
-        <label className="home__filter"  onClick={handleFilter}>
-          <input type="radio" id="fastfood" name="filters" className='home__radio'/>     
+        <label className="home__filter" id="fastfood" onClick={handleFilter}>
+          <input type="radio"  name="filters" className='home__radio'/>     
           <img src={sandwich} alt="" className='home__filter-img'/>     
           Перекус
         </label>        
@@ -93,7 +93,7 @@ function Home({ goods, addLike, addItem, likedItems }) {
               liked={likedItems.map(elem => elem.name).indexOf(good.name)}
               />
             )) :
-            rend.map((good,i)=> (
+            rendered.map((good,i)=> (
               <ShopItem
               key={i}
               view='grid'       

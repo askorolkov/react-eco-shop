@@ -29,9 +29,9 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
   const showPagesButtons = goods.length > itemsToRender.length;
   const pagesAmount = Math.ceil(goods.length / view.perPage);
 
-  // useEffect(()=> {    
-  //   handleSort()
-  // }, [ view, currentPage ])
+  useEffect(()=> {    
+    handleSort()
+  }, [ view, currentPage ])
 
   function handleAmountChange(val: TPerPage) {  
     setView({
@@ -94,8 +94,6 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
       setCurrentPage(currentPage + 1)
     }    
   }   
-
-  handleSort()
   
   return (
     <div className="shop">
