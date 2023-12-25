@@ -8,6 +8,7 @@ import { IShopProduct,
          ICartProduct,
          TSortBy,
          TPerPage,
+         TView,
         } from '../../utils/constants';
 import { IShopView } from '../../App';
 
@@ -23,7 +24,7 @@ interface IShopProps {
 function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps) { 
   const [itemsToRender, setItemsToRender] = useState<IShopProduct[]>(goods.slice(0, view.perPage));
   const [showPagesButtons, setShowPagesButtons] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1)
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(()=> {    
     handleSort()
@@ -33,7 +34,7 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
     goods.length <= itemsToRender.length ? setShowPagesButtons(false) : setShowPagesButtons(true)
   }, [ itemsToRender ])
 
-  function handleItemsAmount(val: TPerPage) {  
+  function handleAmountChange(val: TPerPage) {  
     setView({
       ...view,
       perPage: val,
@@ -41,12 +42,19 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
     setPageNumber(1)
   }
 
-  function handleItemsSort(val: TSortBy) {
+  function handleSortChange(val: TSortBy) {
     setView({
       ...view,
       sortBy: val,
     })
     setPageNumber(1)    
+  }
+
+  function handleViewChange(val: TView): void {
+    setView({
+      ...view,
+      viewType: val
+    })
   }
 
   function handleSort() {
@@ -86,14 +94,7 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
     if(pageNumber < maxPagesAmount) { 
       setPageNumber(pageNumber + 1)
     }    
-  } 
-  
-  function handleViewChange(val: 'grid' | 'list'): void {
-    setView({
-      ...view,
-      viewType: val
-    })
-  }
+  }   
   
   return (
     <div className="shop">
@@ -104,14 +105,14 @@ function Shop({ goods, addItem, view, setView, addLike, likedItems }: IShopProps
             На странице:
             <GoodsAmount 
               amount={view.perPage}
-              onChange={handleItemsAmount}
+              onChange={handleAmountChange}
               />       
           </label>
           <label className="shop__label">
             Сортировка:
             <GoodsSort 
               sortBy={view.sortBy}
-              onChange={handleItemsSort}
+              onChange={handleSortChange}
             />
           </label>
           <button className="shop__view" id='list' onClick={()=>handleViewChange('list')}></button>

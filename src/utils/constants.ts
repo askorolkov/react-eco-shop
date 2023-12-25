@@ -6,11 +6,12 @@ export interface IShopProduct {
 }; 
 
 export interface ICartProduct extends IShopProduct {
-  quantity: number;
+  quantity: number,
 }
 
 export type TSortBy = 'По актуальности' | 'По алфавиту' | 'По цене';
 export type TPerPage = 4 | 8 | 16;
+export type TView = 'grid' | 'list';
 
 export const goodsPerPage = 8;
 export const goodsSortBy = 'По актуальности';

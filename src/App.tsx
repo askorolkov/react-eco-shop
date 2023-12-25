@@ -20,12 +20,13 @@ import { goodsPerPage,
          ICartProduct,
          TSortBy,
          TPerPage,
+         TView,
         } from './utils/constants';
 import { userCartContext } from './context/UserCartContext';
 
 
 export interface IShopView {
-  viewType: 'grid' | 'list',
+  viewType: TView,
   sortBy: TSortBy,
   perPage: TPerPage,
 }
